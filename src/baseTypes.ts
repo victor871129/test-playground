@@ -1,10 +1,10 @@
-export interface SingleQuestion {
+export interface SingleAnswer {
   questionValue: string;
   isCorrect?: boolean;
 }
 
 export interface WithTriviaProps {
-  answerList: SingleQuestion[];
-  addQuestion: (questionValue: string) => void;
+  answerList: SingleAnswer[];
+  setAnswerList: (answerValues: SingleAnswer[]) => void;
   addAnswer: (isCorrect: boolean) => void;
 }
