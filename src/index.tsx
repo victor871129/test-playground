@@ -6,9 +6,9 @@ import InitialPage from "./InitialPage";
 import QuestionDisplay from "./core/presenter/QuestionDisplay";
 import { TriviaProvider } from "./core/transport/triviaContext";
 
-//One HOOK for handling context
-//One HOC for retrieving data
-//Must not answer again the questions, block that
+//TODO
+//Must not answer again the question, block that
+//Qusestions have encoding, remove it
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,7 +16,10 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<InitialPage />} />
-          <Route path="question/:questionNumber" element={<QuestionDisplay />} />
+          <Route
+            path="question/:questionNumber"
+            element={<QuestionDisplay />}
+          />
           <Route
             path="*"
             element={

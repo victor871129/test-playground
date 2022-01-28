@@ -7,11 +7,15 @@ const useQuestion = () => {
   const routerParams = useParams();
 
   const goToNext = (answerValue: boolean) => {
-    const questionValue = answerList[answerList.length - 1].questionValue;
+    const lastAnswer = answerList[answerList.length - 1];
 
     SetAnswerList([
       ...answerList.slice(-1),
-      { questionValue, isCorrect: true }, // TODO check isCorrect using answerValue
+      {
+        category: lastAnswer.category,
+        question: lastAnswer.question,
+        isCorrect: true,
+      }, // TODO check isCorrect using answerValue
     ]);
 
     navigate(

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 // https://www.robinwieruch.de/react-hooks-fetch-data/
-const useDataApi = (initialUrl: string, initialData: string) => {
+const useDataApi = (initialUrl: string, initialData: any) => {
   const [dataValue, setDataValue] = useState(initialData);
   const [urlPath, setUrlPath] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +27,7 @@ const useDataApi = (initialUrl: string, initialData: string) => {
         }
       }
 
-      setIsLoading(false);
+      return await setIsLoading(false);
     };
 
     fetchData();

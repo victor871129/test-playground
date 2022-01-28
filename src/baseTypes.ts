@@ -1,7 +1,8 @@
 import React from "react";
 
 export interface SingleAnswer {
-  questionValue: string;
+  category: string;
+  question: string;
   isCorrect?: boolean;
 }
 
