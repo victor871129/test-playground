@@ -2,17 +2,15 @@ import React from "react";
 import useQuestion from "../container/useQuestion";
 
 const QuestionDisplay = () => {
-  const { currentQuestion, goToNext } = useQuestion();
+  const { currentCategory, currentQuestion, goToNext } = useQuestion();
 
   return (
     <>
-      <header>dfs df</header>
-      <section>
-            <p>{currentQuestion}</p>
-      </section>
-      <p></p>
+      <header>{currentCategory}</header>
+      <section>{currentQuestion}</section>
       <footer>
         <button onClick={() => goToNext(true)}>True</button>
+        <button onClick={() => goToNext(false)}>False</button>
       </footer>
     </>
   );

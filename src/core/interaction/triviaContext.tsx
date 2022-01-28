@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SingleAnswer, TriviaProps } from "../../baseTypes";
-import useDataApi from "./useDataApi";
-import useStorage from "./useStorage";
+import useDataApi from "../transport/useDataApi";
+import useStorage from "../transport/useStorage";
 
 const TriviaContext = React.createContext({
   answerList: [] as SingleAnswer[],

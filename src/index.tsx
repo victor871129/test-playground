@@ -4,7 +4,7 @@ import "./index.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import InitialPage from "./InitialPage";
 import QuestionDisplay from "./core/presenter/QuestionDisplay";
-import { TriviaProvider } from "./core/transport/triviaContext";
+import { TriviaProvider } from "./core/interaction/triviaContext";
 
 //TODO
 //Must not answer again the question, block that
