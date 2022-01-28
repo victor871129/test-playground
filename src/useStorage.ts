@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function getStorageValue(key: string, defaultValue: object) {
+const getStorageValue = (key: string, defaultValue: object) => {
   // Getting stored value
   const saved = localStorage.getItem(key);
 
@@ -9,7 +9,7 @@ function getStorageValue(key: string, defaultValue: object) {
   }
 
   return JSON.parse(saved);
-}
+};
 
 const useStorage = (key: string, defaultValue: object) => {
   const [value, setValue] = useState(() => {
