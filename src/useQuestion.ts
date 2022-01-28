@@ -1,16 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useTrivia } from "./context";
+import { useTrivia } from "./triviaContext";
 
 const useQuestion = () => {
-  const [answerList, SetAnswerList] = useTrivia() as any; // TODO
+  const { answerList, SetAnswerList } = useTrivia();
   const navigate = useNavigate();
   const routerParams = useParams();
 
-  const goToNext = (isAnswerCorrect: boolean) => {
+  const goToNext = (answerValue: boolean) => {
     const questionValue = answerList[answerList.length - 1].questionValue;
+
     SetAnswerList([
       ...answerList.slice(-1),
-      { questionValue, isCorrect: isAnswerCorrect },
+      { questionValue, isCorrect: true }, // TODO check isCorrect using answerValue
     ]);
 
     navigate(
@@ -22,11 +23,11 @@ const useQuestion = () => {
     );
   };
 
-  return [
-    answerList.length > 0,
-    answerList[answerList.length - 1].questionValue,
+  return {
+    currentQuestion:
+      answerList == null ? "" : answerList[answerList.length - 1].questionValue,
     goToNext,
-  ];
+  };
 };
 
 export default useQuestion;

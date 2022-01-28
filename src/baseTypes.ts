@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface SingleAnswer {
   questionValue: string;
   isCorrect?: boolean;
@@ -10,5 +12,5 @@ export interface WithTriviaProps {
 }
 
 export interface TriviaProps {
-  children: any; // TODO any
+  children: React.ReactNode;
 }

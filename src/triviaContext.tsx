@@ -1,8 +1,14 @@
 import React from "react";
-import { TriviaProps } from "./baseTypes";
+import { SingleAnswer, TriviaProps } from "./baseTypes";
 import useStorage from "./useStorage";
 
-const TriviaContext = React.createContext(null);
+const TriviaContext = React.createContext({
+  answerList: [] as SingleAnswer[],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  SetAnswerList: (answerList: SingleAnswer[]) => {
+    return;
+  },
+});
 
 export const TriviaProvider = ({ children }: TriviaProps) => {
   const [answerList, SetAnswerList] = useStorage("answerList", []);

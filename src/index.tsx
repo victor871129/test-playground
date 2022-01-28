@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import InitialPage from "./InitialPage";
-import QuestionPage from "./QuestionDisplay";
-import { TriviaProvider } from "./context";
+import QuestionDisplay from "./QuestionDisplay";
+import { TriviaProvider } from "./triviaContext";
 
 //One HOOK for handling context
 //One HOC for retrieving data
@@ -16,7 +16,7 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<InitialPage />} />
-          <Route path="question/:questionNumber" element={<QuestionPage />} />
+          <Route path="question/:questionNumber" element={<QuestionDisplay />} />
           <Route
             path="*"
             element={
