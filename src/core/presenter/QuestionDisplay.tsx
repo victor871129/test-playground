@@ -1,5 +1,5 @@
 import React from "react";
-import useQuestion from "./useQuestion";
+import useQuestion from "../container/useQuestion";
 
 const QuestionDisplay = () => {
   const { currentQuestion, goToNext } = useQuestion();

@@ -1,5 +1,6 @@
-import React from "react";
-import { SingleAnswer, TriviaProps } from "./baseTypes";
+import React, { useEffect } from "react";
+import { SingleAnswer, TriviaProps } from "../../baseTypes";
+import useDataApi from "./useDataApi";
 import useStorage from "./useStorage";
 
 const TriviaContext = React.createContext({
@@ -12,6 +13,10 @@ const TriviaContext = React.createContext({
 
 export const TriviaProvider = ({ children }: TriviaProps) => {
   const [answerList, SetAnswerList] = useStorage("answerList", []);
+
+  const urlPath = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean" //TODO generalize
+    { dataValue, isLoading, isError, setUrlPath } = useDataApi(urlPath, )
+
 
   return (
     <TriviaContext.Provider value={{ answerList, SetAnswerList }}>

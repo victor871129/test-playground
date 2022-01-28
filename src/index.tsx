@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import InitialPage from "./InitialPage";
-import QuestionDisplay from "./QuestionDisplay";
-import { TriviaProvider } from "./triviaContext";
+import QuestionDisplay from "./core/presenter/QuestionDisplay";
+import { TriviaProvider } from "./core/transport/triviaContext";
 
 //One HOOK for handling context
 //One HOC for retrieving data

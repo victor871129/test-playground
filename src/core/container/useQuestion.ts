@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useTrivia } from "./triviaContext";
+import { useTrivia } from "../transport/triviaContext";
 
 const useQuestion = () => {
   const { answerList, SetAnswerList } = useTrivia();
@@ -25,7 +25,9 @@ const useQuestion = () => {
 
   return {
     currentQuestion:
-      answerList == null ? "" : answerList[answerList.length - 1].questionValue,
+      answerList == null || answerList.length === 0
+        ? "(Empty list)"
+        : answerList[answerList.length - 1].questionValue,
     goToNext,
   };
 };
