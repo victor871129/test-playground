@@ -8,3 +8,7 @@ export interface WithTriviaProps {
   setAnswerList: (answerValues: SingleAnswer[]) => void;
   addAnswer: (isCorrect: boolean) => void;
 }
+
+export interface TriviaProps {
+  children: any; // TODO any
+}
