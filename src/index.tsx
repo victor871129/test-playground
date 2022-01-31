@@ -10,8 +10,9 @@ import BadRequestDisplay from "./BadRequestDisplay";
 import ErrorDisplay from "./ErrorDisplay";
 
 //TODO
-// any typescript
+// `any` typescript
 //Qusestions have encoding, remove it
+//Include clear instructions and requirements for how to run the app in a Development environment.
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,7 +29,10 @@ ReactDOM.render(
           <Route
             path="*"
             element={
-              <ErrorDisplay errorStatus={404} errorValue={"Route not found"} />
+              <ErrorDisplay
+                errorStatus={404}
+                errorValue={"React route not found"}
+              />
             }
           />
         </Routes>
