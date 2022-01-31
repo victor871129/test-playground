@@ -1,12 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AxiosError } from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SingleAnswer, TriviaProps } from "../../baseTypes";
 import useDataApi from "../transport/useDataApi";
 import useStorage from "../transport/useStorage";
 
+const urlPath = `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`;
+
 const TriviaContext = React.createContext({
-  isLoading: false,
+  newData: () => {
+    return;
+  },
+  isLoading: true,
   errorValue: undefined as AxiosError | undefined,
   answerList: [] as SingleAnswer[],
   SetAnswerList: (answerList: SingleAnswer[]) => {
@@ -16,12 +21,13 @@ const TriviaContext = React.createContext({
 
 export const TriviaProvider = ({ children }: TriviaProps) => {
   const [answerList, SetAnswerList] = useStorage("answerList", []);
+  const [dataLoad, SetDataLoad] = useState(0);
 
-  const urlPath =
-    answerList.length > 0
-      ? ""
-      : "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean"; //TODO generalize in .env
-  const { dataValue, isLoading, errorValue } = useDataApi(urlPath, undefined);
+  const { dataValue, isLoading, errorValue } = useDataApi(
+    urlPath,
+    undefined,
+    dataLoad
+  );
 
   useEffect(() => {
     if (dataValue != null) {
@@ -30,9 +36,12 @@ export const TriviaProvider = ({ children }: TriviaProps) => {
     }
   }, [dataValue]);
 
+  const newData = () => SetDataLoad(dataLoad + 1);
+
   return (
     <TriviaContext.Provider
       value={{
+        newData,
         isLoading,
         errorValue,
         answerList,
