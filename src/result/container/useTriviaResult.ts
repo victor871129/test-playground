@@ -1,6 +1,7 @@
 import { useTrivia } from "../../core/interaction/triviaContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { htmlDecode } from "../../mainBase";
 
 const useTriviaResult = () => {
   const { answerList } = useTrivia();
@@ -16,7 +17,16 @@ const useTriviaResult = () => {
   }, []);
 
   return {
-    answerList,
+    correctScore: `${
+      answerList.filter((actualItem) => actualItem.isCorrect).length
+    }/${answerList.length}`,
+    answerValues: answerList.map((actualItem) => ({
+      answerKey: actualItem.question,
+      questionValue: `${actualItem.isCorrect ? "+" : "-"} ${
+        htmlDecode(actualItem.question)
+      }`,
+    })),
+    goHome: () => navigate(`/`),
   };
 };
 

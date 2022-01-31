@@ -12,6 +12,7 @@ import ErrorDisplay from "./ErrorDisplay";
 //TODO
 // `any` typescript
 //Qusestions have encoding, remove it
+//Tests
 //Include clear instructions and requirements for how to run the app in a Development environment.
 
 ReactDOM.render(

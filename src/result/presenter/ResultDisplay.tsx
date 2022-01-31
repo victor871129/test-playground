@@ -2,13 +2,19 @@ import React from "react";
 import useTriviaResult from "../container/useTriviaResult";
 
 const ResultDisplay = () => {
-  const { answerList } = useTriviaResult();
+  const { correctScore, answerValues, goHome } = useTriviaResult();
 
   return (
     <>
-      <header>sdf sdfs</header>
-      <section>{JSON.stringify({ answerList })}</section>
-      <footer>sdf sdf</footer>
+      <header>You scored {correctScore}</header>
+      <section>
+        {answerValues.map((actualItem) => (
+          <p key={actualItem.answerKey}>{actualItem.questionValue}</p>
+        ))}
+      </section>
+      <footer>
+        <button onClick={goHome}>Play again?</button>
+      </footer>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { htmlDecode } from "../../mainBase";
 import { useTrivia } from "../interaction/triviaContext";
 
 const useQuestion = () => {
@@ -37,7 +38,7 @@ const useQuestion = () => {
     const theAnswers = [...answerList];
     theAnswers[answerIndex] = {
       category: currentAnswer.category,
-      question: currentAnswer.question,
+      question: htmlDecode(currentAnswer.question),
       correct_answer: currentAnswer.correct_answer,
       isCorrect:
         currentAnswer.correct_answer === (answerValue ? "True" : "False"),
