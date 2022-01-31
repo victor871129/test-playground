@@ -9,6 +9,7 @@ const QuestionDisplay = () => {
     errorValue,
     currentCategory,
     currentQuestion,
+    questionProgress,
     goToNext,
   } = useQuestion();
 
@@ -27,6 +28,7 @@ const QuestionDisplay = () => {
       <footer>
         <button onClick={() => goToNext(true)}>True</button>
         <button onClick={() => goToNext(false)}>False</button>
+        <p>{questionProgress}</p>
       </footer>
     </>
   );

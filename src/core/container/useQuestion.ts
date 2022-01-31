@@ -68,6 +68,7 @@ const useQuestion = () => {
       answerList.length > 0 && answerIndex >= 0
         ? answerList[answerIndex].question
         : "(Empty list)",
+    questionProgress: `${answerIndex + 1} of ${answerList.length}`,
     goToNext,
   };
 };

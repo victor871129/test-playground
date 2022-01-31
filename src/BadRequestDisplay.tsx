@@ -7,7 +7,11 @@ const BadRequestDisplay = () => {
   return (
     <ErrorDisplay
       errorStatus={400}
-      errorValue={routerParams.errorReason?.toString()}
+      errorValue={
+        routerParams.errorReason == null
+          ? ""
+          : routerParams.errorReason.toString()
+      }
     />
   );
 };

@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import React from "react";
 
 export interface SingleAnswer {
@@ -19,5 +20,5 @@ export interface TriviaProps {
 
 export interface ErrorProps {
   errorStatus: number;
-  errorValue: any;
+  errorValue: AxiosError | string;
 }
