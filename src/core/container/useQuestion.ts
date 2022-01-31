@@ -26,13 +26,13 @@ const useQuestion = () => {
       const theIndex = parseInt(questionNumber) - 1;
       SetAnswerIndex(theIndex);
     } else {
-      navigate(`/400`);
+      navigate(`/400/Invalid_questionNumber`);
     }
   }, [routerParams.questionNumber]);
 
   const goToNext = (answerValue: boolean) => {
     const currentAnswer = answerList[answerIndex];
-    const isCurrentCorrect = currentAnswer.isCorrect;
+    const isCurrentAnswered = currentAnswer.isCorrect;
 
     const theAnswers = [...answerList];
     theAnswers[answerIndex] = {
@@ -45,14 +45,14 @@ const useQuestion = () => {
 
     SetAnswerList(theAnswers);
 
-    if (isCurrentCorrect == null) {
+    if (isCurrentAnswered == null) {
       if (answerIndex + 1 < answerList.length) {
         navigate(`/question/${answerIndex + 2}`);
       } else {
         navigate(`/result`);
       }
     } else {
-      navigate(`/400`);
+      navigate(`/400/Question_already_answered`);
     }
   };
 

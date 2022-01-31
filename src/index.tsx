@@ -1,12 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useParams,
+} from "react-router-dom";
 import InitialPage from "./InitialDisplay";
 import QuestionDisplay from "./core/presenter/QuestionDisplay";
 import { TriviaProvider } from "./core/interaction/triviaContext";
 import ResultDisplay from "./result/presenter/ResultDisplay";
 import ErrorDisplay from "./ErrorDisplay";
+import BadRequestDisplay from "./BadRequestDisplay";
 
 //TODO
 // any typescript
@@ -23,22 +30,8 @@ ReactDOM.render(
             element={<QuestionDisplay />}
           />
           <Route path="/result" element={<ResultDisplay />} />
-          <Route
-            path="400"
-            element={() => {
-              return <ErrorDisplay errorStatus={400} errorValue={} />;
-            }}
-          />
-          <Route
-            path="*"
-            element={
-              <>
-                <header>404 Not Found</header>
-                Route not found. <Link to="/">Go to Home</Link>
-                {/* TODO */}
-              </>
-            }
-          />
+          <Route path="400/:errorReason" element={<BadRequestDisplay />} />
+          {/* <Route path="*" element={<ErrorDisplay errorStatus={404} />} /> */}
         </Routes>
       </BrowserRouter>
     </TriviaProvider>

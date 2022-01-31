@@ -16,3 +16,8 @@ export interface WithTriviaProps {
 export interface TriviaProps {
   children: React.ReactNode;
 }
+
+export interface ErrorProps {
+  errorStatus: number;
+  errorValue: any;
+}

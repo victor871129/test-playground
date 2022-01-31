@@ -11,7 +11,7 @@ const useTriviaResult = () => {
       answerList.filter((actualItem) => actualItem.isCorrect != null).length !==
       answerList.length
     ) {
-      navigate(`/400`);
+      navigate(`/400/Questions_not_answered`);
     }
   }, []);
 

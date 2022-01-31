@@ -1,8 +1,9 @@
 import { AxiosError } from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
+import { ErrorProps } from "./baseTypes";
 
-const ErrorDisplay = (errorStatus: any, errorValue: AxiosError) => (
+const ErrorDisplay = ({ errorStatus, errorValue }: ErrorProps) => (
   <>
     {errorStatus === 401 && <header>400 Bad Request</header>}
     {errorStatus === 401 && <header>401 Unauthorized</header>}
