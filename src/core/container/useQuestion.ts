@@ -1,26 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTrivia } from "../interaction/triviaContext";
 
 const useQuestion = () => {
-  const { isLoading, errorValue, answerList, SetAnswerList } = useTrivia();
+  const {
+    isLoading,
+    errorValue,
+    answerList,
+    SetAnswerList,
+    answerIndex,
+    SetAnswerIndex,
+  } = useTrivia();
   const navigate = useNavigate();
   const routerParams = useParams();
-  const [answerIndex, SetAnswerIndex] = useState(-1);
 
   useEffect(() => {
     const questionNumber = routerParams.questionNumber;
 
-    console.log(questionNumber);
     //Checking if string has an integer
     if (
       questionNumber != null &&
       /^-?\d+$/.test(questionNumber) &&
       parseInt(questionNumber) <= answerList.length
     ) {
-      SetAnswerIndex(parseInt(questionNumber) - 1);
+      const theIndex = parseInt(questionNumber) - 1;
+      SetAnswerIndex(theIndex);
     } else {
-      navigate(`/404`);
+      navigate(`/400`);
     }
   }, [routerParams.questionNumber]);
 
@@ -39,9 +45,12 @@ const useQuestion = () => {
 
     SetAnswerList(theAnswers);
 
-    console.log("isCurrentCorrect", isCurrentCorrect);
     if (isCurrentCorrect == null) {
-      navigate(`/question/${answerIndex + 2}`);
+      if (answerIndex + 1 < answerList.length) {
+        navigate(`/question/${answerIndex + 2}`);
+      } else {
+        navigate(`/`);
+      }
     } else {
       navigate(`/400`);
     }

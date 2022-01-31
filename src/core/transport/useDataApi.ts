@@ -2,7 +2,11 @@ import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 
 // https://www.robinwieruch.de/react-hooks-fetch-data/
-const useDataApi = (initialUrl: string, initialData: any, dataLoad: number) => {
+const useDataApi = (
+  initialUrl: string,
+  initialData: any,
+  isEnabled: boolean
+) => {
   const [dataValue, setDataValue] = useState(initialData);
   const [urlPath, setUrlPath] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +16,7 @@ const useDataApi = (initialUrl: string, initialData: any, dataLoad: number) => {
     let didCancel = false;
 
     const fetchData = async () => {
-      if (urlPath == null || urlPath.length === 0) {
+      if (!isEnabled) {
         return;
       }
 
@@ -40,7 +44,7 @@ const useDataApi = (initialUrl: string, initialData: any, dataLoad: number) => {
     return () => {
       didCancel = true;
     };
-  }, [urlPath, dataLoad]);
+  }, [urlPath, isEnabled]);
 
   return { dataValue, isLoading, errorValue, setUrlPath };
 };
