@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 
 // https://www.robinwieruch.de/react-hooks-fetch-data/
@@ -6,13 +6,13 @@ const useDataApi = (initialUrl: string, initialData: any) => {
   const [dataValue, setDataValue] = useState(initialData);
   const [urlPath, setUrlPath] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [errorValue, setErrorValue] = useState<AxiosError>();
 
   useEffect(() => {
     let didCancel = false;
 
     const fetchData = async () => {
-      setIsError(false);
+      setErrorValue(undefined);
       setIsLoading(true);
 
       try {
@@ -21,9 +21,9 @@ const useDataApi = (initialUrl: string, initialData: any) => {
         if (!didCancel) {
           setDataValue(result.data);
         }
-      } catch (errorValue) {
+      } catch (errorCatch) {
         if (!didCancel) {
-          setIsError(true);
+          setErrorValue(errorCatch as AxiosError);
         }
       }
 
@@ -37,7 +37,7 @@ const useDataApi = (initialUrl: string, initialData: any) => {
     };
   }, [urlPath]);
 
-  return { dataValue, isLoading, isError, setUrlPath };
+  return { dataValue, isLoading, errorValue, setUrlPath };
 };
 
 export default useDataApi;

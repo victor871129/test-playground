@@ -2,21 +2,28 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useTrivia } from "../interaction/triviaContext";
 
 const useQuestion = () => {
-  const { answerList, SetAnswerList } = useTrivia();
+  const {
+    isLoading,
+    errorValue,
+    answerList,
+    SetAnswerList,
+    answerIndex,
+    SetAnswerIndex,
+  } = useTrivia();
   const navigate = useNavigate();
   const routerParams = useParams();
 
   const goToNext = (answerValue: boolean) => {
-    const lastAnswer = answerList[answerList.length - 1];
+    const currentAnswer = answerList[answerIndex];
 
-    SetAnswerList([
-      ...answerList.slice(-1),
-      {
-        category: lastAnswer.category,
-        question: lastAnswer.question,
-        isCorrect: true,
-      }, // TODO check isCorrect using answerValue
-    ]);
+    const theAnswers = [...answerList];
+    theAnswers[answerIndex] = {
+      category: currentAnswer.category,
+      question: currentAnswer.question,
+      isCorrect: true,
+    }; // TODO check isCorrect using answerValue
+    SetAnswerList(theAnswers);
+    SetAnswerIndex(answerIndex + 1);
 
     const questionNumber = routerParams.questionNumber;
 
@@ -30,6 +37,9 @@ const useQuestion = () => {
   };
 
   return {
+    isLoading,
+    errorStatus: errorValue?.request?.status,
+    errorValue,
     currentCategory:
       answerList != null && answerList.length > 0
         ? answerList[answerList.length - 1].category

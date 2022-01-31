@@ -11,7 +11,7 @@ const getStorageValue = (key: string, defaultValue: object) => {
   return JSON.parse(saved);
 };
 
-const useStorage = (key: string, defaultValue: object) => {
+const useStorage = (key: string, defaultValue: any) => {
   const [value, setValue] = useState(() => {
     return getStorageValue(key, defaultValue);
   });

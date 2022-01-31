@@ -1,43 +1,47 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { AxiosError } from "axios";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { SingleAnswer, TriviaProps } from "../../baseTypes";
 import useDataApi from "../transport/useDataApi";
 import useStorage from "../transport/useStorage";
 
 const TriviaContext = React.createContext({
+  isLoading: false,
+  errorValue: undefined as AxiosError | undefined,
   answerList: [] as SingleAnswer[],
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   SetAnswerList: (answerList: SingleAnswer[]) => {
+    return;
+  },
+  answerIndex: 0,
+  SetAnswerIndex: (answerIndex: number) => {
     return;
   },
 });
 
 export const TriviaProvider = ({ children }: TriviaProps) => {
   const [answerList, SetAnswerList] = useStorage("answerList", []);
+  const [answerIndex, SetAnswerIndex] = useStorage("answerIndex", 0);
 
   const urlPath =
     "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean"; //TODO generalize
-  const { dataValue, isLoading, isError } = useDataApi(urlPath, {}); // TODO initialData
+  const { dataValue, isLoading, errorValue } = useDataApi(urlPath, undefined);
 
   useEffect(() => {
     console.log(dataValue.results);
     SetAnswerList(dataValue.results);
   }, [dataValue]);
 
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  if (isError) {
-    return (
-      <>
-        An error has ocurred. <Link to="/">Go to Home</Link>
-      </>
-    );
-  }
-
   return (
-    <TriviaContext.Provider value={{ answerList, SetAnswerList }}>
+    <TriviaContext.Provider
+      value={{
+        isLoading,
+        errorValue,
+        answerList,
+        SetAnswerList,
+        answerIndex,
+        SetAnswerIndex,
+      }}
+    >
       {children}
     </TriviaContext.Provider>
   );
