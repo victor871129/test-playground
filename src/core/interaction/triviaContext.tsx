@@ -12,23 +12,22 @@ const TriviaContext = React.createContext({
   SetAnswerList: (answerList: SingleAnswer[]) => {
     return;
   },
-  answerIndex: 0,
-  SetAnswerIndex: (answerIndex: number) => {
-    return;
-  },
 });
 
 export const TriviaProvider = ({ children }: TriviaProps) => {
   const [answerList, SetAnswerList] = useStorage("answerList", []);
-  const [answerIndex, SetAnswerIndex] = useStorage("answerIndex", 0);
 
   const urlPath =
-    "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean"; //TODO generalize
+    answerList.length > 0
+      ? ""
+      : "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean"; //TODO generalize in .env
   const { dataValue, isLoading, errorValue } = useDataApi(urlPath, undefined);
 
   useEffect(() => {
-    console.log(dataValue.results);
-    SetAnswerList(dataValue.results);
+    if (dataValue != null) {
+      console.log(dataValue.results);
+      SetAnswerList(dataValue.results);
+    }
   }, [dataValue]);
 
   return (
@@ -38,8 +37,6 @@ export const TriviaProvider = ({ children }: TriviaProps) => {
         errorValue,
         answerList,
         SetAnswerList,
-        answerIndex,
-        SetAnswerIndex,
       }}
     >
       {children}

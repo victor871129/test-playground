@@ -12,6 +12,10 @@ const useDataApi = (initialUrl: string, initialData: any) => {
     let didCancel = false;
 
     const fetchData = async () => {
+      if (urlPath == null || urlPath.length === 0) {
+        return await setIsLoading(false);
+      }
+
       setErrorValue(undefined);
       setIsLoading(true);
 
@@ -19,6 +23,7 @@ const useDataApi = (initialUrl: string, initialData: any) => {
         const result = await axios(urlPath);
 
         if (!didCancel) {
+          console.log("de3454", result.data);
           setDataValue(result.data);
         }
       } catch (errorCatch) {

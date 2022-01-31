@@ -1,17 +1,28 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTrivia } from "../interaction/triviaContext";
 
 const useQuestion = () => {
-  const {
-    isLoading,
-    errorValue,
-    answerList,
-    SetAnswerList,
-    answerIndex,
-    SetAnswerIndex,
-  } = useTrivia();
+  const { isLoading, errorValue, answerList, SetAnswerList } = useTrivia();
   const navigate = useNavigate();
   const routerParams = useParams();
+  const [answerIndex, SetAnswerIndex] = useState(-1);
+
+  useEffect(() => {
+    const questionNumber = routerParams.questionNumber;
+
+    console.log(questionNumber);
+    //Checking if string has an integer
+    if (
+      questionNumber != null &&
+      /^-?\d+$/.test(questionNumber) &&
+      parseInt(questionNumber) <= answerList.length
+    ) {
+      SetAnswerIndex(parseInt(questionNumber) - 1);
+    } else {
+      navigate(`/404`);
+    }
+  }, [routerParams.questionNumber]);
 
   const goToNext = (answerValue: boolean) => {
     const currentAnswer = answerList[answerIndex];
@@ -20,20 +31,21 @@ const useQuestion = () => {
     theAnswers[answerIndex] = {
       category: currentAnswer.category,
       question: currentAnswer.question,
-      isCorrect: true,
-    }; // TODO check isCorrect using answerValue
-    SetAnswerList(theAnswers);
-    SetAnswerIndex(answerIndex + 1);
+      correct_answer: currentAnswer.correct_answer,
+      isCorrect:
+        currentAnswer.correct_answer === (answerValue ? "True" : "False"),
+    };
 
-    const questionNumber = routerParams.questionNumber;
-
-    navigate(
-      `/question/${
-        questionNumber != null && /^-?\d+$/.test(questionNumber) //Checking if string has an integer
-          ? parseInt(questionNumber) + 1
-          : 0
-      }`
+    console.log(
+      "sderwr",
+      currentAnswer.correct_answer,
+      answerValue,
+      answerIndex,
+      theAnswers
     );
+    SetAnswerList(theAnswers);
+
+    navigate(`/question/${answerIndex + 2}`);
   };
 
   return {
@@ -41,12 +53,12 @@ const useQuestion = () => {
     errorStatus: errorValue?.request?.status,
     errorValue,
     currentCategory:
-      answerList != null && answerList.length > 0
-        ? answerList[answerList.length - 1].category
+      answerList.length > 0 && answerIndex >= 0
+        ? answerList[answerIndex].category
         : "",
     currentQuestion:
-      answerList != null && answerList.length > 0
-        ? answerList[answerList.length - 1].question
+      answerList.length > 0 && answerIndex >= 0
+        ? answerList[answerIndex].question
         : "(Empty list)",
     goToNext,
   };

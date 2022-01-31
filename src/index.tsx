@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import InitialPage from "./InitialPage";
+import InitialPage from "./InitialDisplay";
 import QuestionDisplay from "./core/presenter/QuestionDisplay";
 import { TriviaProvider } from "./core/interaction/triviaContext";
 
