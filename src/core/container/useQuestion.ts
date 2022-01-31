@@ -49,7 +49,7 @@ const useQuestion = () => {
       if (answerIndex + 1 < answerList.length) {
         navigate(`/question/${answerIndex + 2}`);
       } else {
-        navigate(`/`);
+        navigate(`/result`);
       }
     } else {
       navigate(`/400`);

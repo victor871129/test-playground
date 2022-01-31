@@ -5,9 +5,11 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import InitialPage from "./InitialDisplay";
 import QuestionDisplay from "./core/presenter/QuestionDisplay";
 import { TriviaProvider } from "./core/interaction/triviaContext";
+import ResultDisplay from "./result/presenter/ResultDisplay";
+import ErrorDisplay from "./ErrorDisplay";
 
 //TODO
-//Must not answer again the question, block that
+// any typescript
 //Qusestions have encoding, remove it
 
 ReactDOM.render(
@@ -20,14 +22,12 @@ ReactDOM.render(
             path="question/:questionNumber"
             element={<QuestionDisplay />}
           />
+          <Route path="/result" element={<ResultDisplay />} />
           <Route
             path="400"
-            element={
-              <>
-                400 Bad Request. <Link to="/">Go to Home</Link>
-                {/* TODO */}
-              </>
-            }
+            element={() => {
+              return <ErrorDisplay errorStatus={400} errorValue={} />;
+            }}
           />
           <Route
             path="*"
