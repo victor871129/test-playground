@@ -11,6 +11,7 @@ const InitialPage = () => {
       <p>Can you score 100%?</p>
       <footer>
         <button onClick={() => navigate("/question/1")}>Begin</button>
+        {/* TODO Use container */}
       </footer>
     </>
   );

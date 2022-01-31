@@ -21,10 +21,21 @@ ReactDOM.render(
             element={<QuestionDisplay />}
           />
           <Route
+            path="400"
+            element={
+              <>
+                400 Bad Request. <Link to="/">Go to Home</Link>
+                {/* TODO */}
+              </>
+            }
+          />
+          <Route
             path="*"
             element={
               <>
+                <header>404 Not Found</header>
                 Route not found. <Link to="/">Go to Home</Link>
+                {/* TODO */}
               </>
             }
           />

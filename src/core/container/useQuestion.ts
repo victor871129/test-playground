@@ -26,6 +26,7 @@ const useQuestion = () => {
 
   const goToNext = (answerValue: boolean) => {
     const currentAnswer = answerList[answerIndex];
+    const isCurrentCorrect = currentAnswer.isCorrect;
 
     const theAnswers = [...answerList];
     theAnswers[answerIndex] = {
@@ -36,16 +37,14 @@ const useQuestion = () => {
         currentAnswer.correct_answer === (answerValue ? "True" : "False"),
     };
 
-    console.log(
-      "sderwr",
-      currentAnswer.correct_answer,
-      answerValue,
-      answerIndex,
-      theAnswers
-    );
     SetAnswerList(theAnswers);
 
-    navigate(`/question/${answerIndex + 2}`);
+    console.log("isCurrentCorrect", isCurrentCorrect);
+    if (isCurrentCorrect == null) {
+      navigate(`/question/${answerIndex + 2}`);
+    } else {
+      navigate(`/400`);
+    }
   };
 
   return {
