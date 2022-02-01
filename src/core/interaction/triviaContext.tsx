@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
-import { SingleAnswer, TriviaProps } from "../../baseTypes";
+import { SingleAnswer, TriviaProps } from "../../utils/baseTypes";
 import useDataApi from "../transport/useDataApi";
-import useStorage from "../transport/useStorage";
+import useStorage from "../persistence/useStorage";
 
 const urlPath = `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`;
 

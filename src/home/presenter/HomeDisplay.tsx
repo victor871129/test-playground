@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import useHome from "../container/useHome";
 
-const InitialPage = () => {
-  const navigate = useNavigate();
+const HomeDisplay = () => {
+  const { goNext } = useHome();
 
   return (
     <>
@@ -10,11 +10,10 @@ const InitialPage = () => {
       <p>You will be presented with 10 True or False questions</p>
       <p>Can you score 100%?</p>
       <footer>
-        <button onClick={() => navigate("/question/1")}>Begin</button>
-        {/* TODO Use container */}
+        <button onClick={goNext}>Begin</button>
       </footer>
     </>
   );
 };
 
-export default InitialPage;
+export default HomeDisplay;
