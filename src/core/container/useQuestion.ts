@@ -38,7 +38,7 @@ const useQuestion = () => {
     const theAnswers = [...answerList];
     theAnswers[answerIndex] = {
       category: currentAnswer.category,
-      question: htmlDecode(currentAnswer.question),
+      question: currentAnswer.question,
       correct_answer: currentAnswer.correct_answer,
       isCorrect:
         currentAnswer.correct_answer === (answerValue ? "True" : "False"),
@@ -67,7 +67,7 @@ const useQuestion = () => {
         : "",
     currentQuestion:
       answerList.length > 0 && answerIndex >= 0
-        ? answerList[answerIndex].question
+        ? htmlDecode(answerList[answerIndex].question)
         : "(Empty list)",
     questionProgress: `${answerIndex + 1} of ${answerList.length}`,
     goToNext,

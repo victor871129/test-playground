@@ -22,9 +22,9 @@ const useTriviaResult = () => {
     }/${answerList.length}`,
     answerValues: answerList.map((actualItem) => ({
       answerKey: actualItem.question,
-      questionValue: `${actualItem.isCorrect ? "+" : "-"} ${
-        htmlDecode(actualItem.question)
-      }`,
+      questionValue: `${actualItem.isCorrect ? "✔️" : "❌"} ${htmlDecode(
+        actualItem.question
+      )} The answer is ${actualItem.correct_answer}.`,
     })),
     goHome: () => navigate(`/`),
   };
