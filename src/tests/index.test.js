@@ -1,3 +1,7 @@
+/*global describe test expect*/
+
+import { htmlDecode } from "../utils/mainBase";
+
 describe("G2i Tests", () => {
   test("it can pass", () => {
     expect(true).toBe(true);
@@ -13,5 +17,9 @@ describe("G2i Tests", () => {
 
   test("My Name is John", () => {
     expect("John").toBe("John");
+  });
+
+  test("Check htmlDecode with string", () => {
+    expect(htmlDecode("&lt;&gt;")).toBe("<>");
   });
 });

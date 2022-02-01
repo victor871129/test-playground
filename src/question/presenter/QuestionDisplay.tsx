@@ -1,5 +1,5 @@
 import React from "react";
-import ErrorDisplay from "../../core/presenter/ErrorDisplay";
+import ErrorDisplay from "../../utils/presenter/ErrorDisplay";
 import useQuestion from "../container/useQuestion";
 
 const QuestionDisplay = () => {

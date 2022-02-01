@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ErrorProps } from "../../utils/baseTypes";
+import { ErrorProps } from "../baseTypes";
 
 const ErrorDisplay = ({ errorStatus, errorValue }: ErrorProps) => (
   <>

@@ -2,7 +2,7 @@
 import { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
 import { SingleAnswer, TriviaProps } from "../../utils/baseTypes";
-import useExternal from "./useExternal";
+import useExternal from "../interaction/useExternal";
 
 const TriviaContext = React.createContext({
   isLoading: true,
