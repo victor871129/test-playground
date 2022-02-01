@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import InitialPage from "./InitialDisplay";
-import QuestionDisplay from "./core/presenter/QuestionDisplay";
+import QuestionDisplay from "./question/presenter/QuestionDisplay";
 import { TriviaProvider } from "./core/interaction/triviaContext";
 import ResultDisplay from "./result/presenter/ResultDisplay";
 import BadRequestDisplay from "./BadRequestDisplay";
@@ -11,7 +11,6 @@ import ErrorDisplay from "./ErrorDisplay";
 
 //TODO
 // `any` typescript
-//Qusestions have encoding, remove it
 //Tests
 //Include clear instructions and requirements for how to run the app in a Development environment.
 

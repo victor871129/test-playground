@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 // https://www.robinwieruch.de/react-hooks-fetch-data/
 const useDataApi = (
   initialUrl: string,
-  initialData: any,
+  initialData: { results: [] } | undefined,
   isEnabled: boolean
 ) => {
   const [dataValue, setDataValue] = useState(initialData);
@@ -27,7 +27,6 @@ const useDataApi = (
         const result = await axios(urlPath);
 
         if (!didCancel) {
-          console.log("de3454", result.data);
           setDataValue(result.data);
         }
       } catch (errorCatch) {
