@@ -2,11 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import ErrorDisplay from "./ErrorDisplay";
 
-const BadRequestDisplay = () => {
+const ErrorRouteDisplay = () => {
   const routerParams = useParams();
   return (
     <ErrorDisplay
-      errorStatus={400}
+      errorStatus={routerParams.errorStatus}
       errorValue={
         routerParams.errorReason == null
           ? ""
@@ -16,4 +16,4 @@ const BadRequestDisplay = () => {
   );
 };
 
-export default BadRequestDisplay;
+export default ErrorRouteDisplay;

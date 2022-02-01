@@ -6,7 +6,7 @@ import QuestionDisplay from "../../question/presenter/QuestionDisplay";
 import ResultDisplay from "../../result/presenter/ResultDisplay";
 import { TriviaProvider } from "../transport/triviaContext";
 import ErrorDisplay from "../../utils/presenter/ErrorDisplay";
-import BadRequestDisplay from "../../utils/presenter/BadRequestDisplay";
+import ErrorRouteDisplay from "../../utils/presenter/ErrorRouteDisplay";
 
 const MainDisplay = () => {
   return (
@@ -20,12 +20,15 @@ const MainDisplay = () => {
               element={<QuestionDisplay />}
             />
             <Route path="/result" element={<ResultDisplay />} />
-            <Route path="400/:errorReason" element={<BadRequestDisplay />} />
+            <Route
+              path="error/:errorStatus/:errorReason"
+              element={<ErrorRouteDisplay />}
+            />
             <Route
               path="*"
               element={
                 <ErrorDisplay
-                  errorStatus={404}
+                  errorStatus={"404"}
                   errorValue={"React route not found"}
                 />
               }

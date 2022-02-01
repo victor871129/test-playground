@@ -19,6 +19,6 @@ export interface TriviaProps {
 }
 
 export interface ErrorProps {
-  errorStatus: number;
+  errorStatus: string | undefined;
   errorValue: AxiosError | string;
 }

@@ -27,7 +27,7 @@ const useQuestion = () => {
       const theIndex = parseInt(questionNumber) - 1;
       SetAnswerIndex(theIndex);
     } else {
-      navigate(`/400/Invalid_questionNumber`);
+      navigate(`/error/400/Invalid_question_number`);
     }
   }, [routerParams.questionNumber]);
 
@@ -53,7 +53,7 @@ const useQuestion = () => {
         navigate(`/result`);
       }
     } else {
-      navigate(`/400/Question_already_answered`);
+      navigate(`/error/400/Question_already_answered`);
     }
   };
 
