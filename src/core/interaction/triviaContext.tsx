@@ -2,10 +2,7 @@
 import { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
 import { SingleAnswer, TriviaProps } from "../../utils/baseTypes";
-import useDataApi from "../transport/useDataApi";
-import useStorage from "../persistence/useStorage";
-
-const urlPath = `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`;
+import useExternal from "./useExternal";
 
 const TriviaContext = React.createContext({
   isLoading: true,
@@ -21,20 +18,14 @@ const TriviaContext = React.createContext({
 });
 
 export const TriviaProvider = ({ children }: TriviaProps) => {
-  const [answerList, SetAnswerList] = useStorage("answerList", []);
-  const [answerIndex, SetAnswerIndex] = useState(-1);
-
-  const { dataValue, isLoading, errorValue } = useDataApi(
-    urlPath,
-    undefined,
-    answerIndex === 0
-  );
-
-  useEffect(() => {
-    if (answerIndex === 0 && dataValue != null) {
-      SetAnswerList(dataValue.results);
-    }
-  }, [dataValue]);
+  const {
+    isLoading,
+    errorValue,
+    answerList,
+    SetAnswerList,
+    answerIndex,
+    SetAnswerIndex,
+  } = useExternal();
 
   return (
     <TriviaContext.Provider

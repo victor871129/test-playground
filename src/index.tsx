@@ -12,6 +12,7 @@ import ErrorDisplay from "./core/presenter/ErrorDisplay";
 //TODO
 // `any` typescript
 //Tests
+// Comments
 
 ReactDOM.render(
   <React.StrictMode>
