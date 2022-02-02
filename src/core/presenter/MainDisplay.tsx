@@ -20,10 +20,7 @@ const MainDisplay = () => {
               element={<QuestionDisplay />}
             />
             <Route path="/result" element={<ResultDisplay />} />
-            <Route
-              path="error/:errorStatus/:errorReason"
-              element={<ErrorRouteDisplay />}
-            />
+            <Route path="error/:errorStatus" element={<ErrorRouteDisplay />} />
             <Route
               path="*"
               element={

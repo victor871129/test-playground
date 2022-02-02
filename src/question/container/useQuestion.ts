@@ -27,9 +27,19 @@ const useQuestion = () => {
       const theIndex = parseInt(questionNumber) - 1;
       SetAnswerIndex(theIndex);
     } else {
-      navigate(`/error/400/Invalid_question_number`);
+      navigate("/error/400", {
+        state: { errorValue: "Invalid question number" },
+      });
     }
   }, [routerParams.questionNumber]);
+
+  useEffect(() => {
+    if (errorValue != null) {
+      const statusValue = errorValue?.request?.status;
+      const errorStatus = parseInt(statusValue) > 0 ? statusValue : "500";
+      navigate(`/error/${errorStatus}`, { state: { errorValue } });
+    }
+  }, [errorValue]);
 
   const goToNext = (answerValue: boolean) => {
     const currentAnswer = answerList[answerIndex];
@@ -50,16 +60,17 @@ const useQuestion = () => {
       if (answerIndex + 1 < answerList.length) {
         navigate(`/question/${answerIndex + 2}`);
       } else {
-        navigate(`/result`);
+        navigate("/result");
       }
     } else {
-      navigate(`/error/400/Question_already_answered`);
+      navigate("/error/400", {
+        state: { errorValue: "Question already answered" },
+      });
     }
   };
 
   return {
     isLoading,
-    errorStatus: errorValue?.request?.status,
     errorValue,
     currentCategory:
       answerList.length > 0 && answerIndex >= 0

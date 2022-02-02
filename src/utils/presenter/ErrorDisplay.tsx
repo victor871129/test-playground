@@ -9,8 +9,7 @@ const ErrorDisplay = ({ errorStatus, errorValue }: ErrorProps) => (
     {errorStatus === "403" && <header>403 Forbidden</header>}
     {errorStatus === "404" && <header>404 Not Found</header>}
     {errorStatus === "500" && <header>500 Internal Server Error</header>}
-    An {errorStatus != null ? ` ${errorStatus} status` : ""} error has ocurred.{" "}
-    <Link to="/">Go to Home</Link>
+    An {errorStatus} status error has ocurred. <Link to="/">Go to Home</Link>
     <pre>{JSON.stringify(errorValue)}</pre>
   </>
 );

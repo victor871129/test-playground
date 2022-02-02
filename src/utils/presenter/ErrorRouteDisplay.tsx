@@ -1,18 +1,17 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ErrorDisplay from "./ErrorDisplay";
 
 const ErrorRouteDisplay = () => {
   const routerParams = useParams();
+  const { state } = useLocation() as { state: { errorValue: string } };
   return (
-    <ErrorDisplay
-      errorStatus={routerParams.errorStatus}
-      errorValue={
-        routerParams.errorReason == null
-          ? ""
-          : routerParams.errorReason.toString()
-      }
-    />
+    <>
+      <ErrorDisplay
+        errorStatus={routerParams.errorStatus}
+        errorValue={state.errorValue != null ? state.errorValue.toString() : ""}
+      />
+    </>
   );
 };
 

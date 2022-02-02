@@ -1,12 +1,9 @@
 import React from "react";
-import ErrorDisplay from "../../utils/presenter/ErrorDisplay";
 import useQuestion from "../container/useQuestion";
 
 const QuestionDisplay = () => {
   const {
     isLoading,
-    errorStatus,
-    errorValue,
     currentCategory,
     currentQuestion,
     questionProgress,
@@ -15,10 +12,6 @@ const QuestionDisplay = () => {
 
   if (isLoading) {
     return <>Loading...</>;
-  }
-
-  if (errorValue != null) {
-    return <ErrorDisplay errorStatus={errorStatus} errorValue={errorValue} />;
   }
 
   return (
