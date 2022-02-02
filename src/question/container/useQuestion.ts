@@ -19,11 +19,7 @@ const useQuestion = () => {
     const questionNumber = routerParams.questionNumber;
 
     //Checking if string has an integer
-    if (
-      questionNumber != null &&
-      /^-?\d+$/.test(questionNumber) &&
-      parseInt(questionNumber) <= answerList.length
-    ) {
+    if (questionNumber != null && /^-?\d+$/.test(questionNumber)) {
       const theIndex = parseInt(questionNumber) - 1;
       SetAnswerIndex(theIndex);
     } else {

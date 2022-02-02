@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AxiosError } from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SingleAnswer, TriviaProps } from "../../utils/baseTypes";
 import useExternal from "../interaction/useExternal";
 

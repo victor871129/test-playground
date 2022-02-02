@@ -12,7 +12,9 @@ const useTriviaResult = () => {
       answerList.filter((actualItem) => actualItem.isCorrect != null).length !==
       answerList.length
     ) {
-      navigate(`/error/400/Questions_not_answered`);
+      navigate("/error/400", {
+        state: { errorValue: "Questions not answered" },
+      });
     }
   }, []);
 

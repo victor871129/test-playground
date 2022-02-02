@@ -14,7 +14,11 @@ const useExternal = () => {
   );
 
   useEffect(() => {
-    if (dataValue != null) {
+    if (
+      dataValue != null &&
+      dataValue.results != null &&
+      dataValue.results.length > 0
+    ) {
       SetAnswerList(dataValue.results);
     }
   }, [dataValue]);
