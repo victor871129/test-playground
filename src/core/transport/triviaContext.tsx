@@ -11,8 +11,8 @@ const TriviaContext = React.createContext({
   SetAnswerList: (answerList: SingleAnswer[]) => {
     return;
   },
-  answerIndex: -1,
-  SetAnswerIndex: (answerIndex: number) => {
+  cardIndex: -1,
+  SetCardIndex: (cardIndex: number) => {
     return;
   },
 });
@@ -23,8 +23,8 @@ export const TriviaProvider = ({ children }: TriviaProps) => {
     errorValue,
     answerList,
     SetAnswerList,
-    answerIndex,
-    SetAnswerIndex,
+    cardIndex,
+    SetCardIndex,
   } = useExternal();
 
   return (
@@ -34,8 +34,8 @@ export const TriviaProvider = ({ children }: TriviaProps) => {
         errorValue,
         answerList,
         SetAnswerList,
-        answerIndex,
-        SetAnswerIndex,
+        cardIndex,
+        SetCardIndex,
       }}
     >
       {children}

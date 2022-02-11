@@ -9,8 +9,8 @@ const useQuestion = () => {
     errorValue,
     answerList,
     SetAnswerList,
-    answerIndex,
-    SetAnswerIndex,
+    cardIndex,
+    SetCardIndex,
   } = useTrivia();
   const navigate = useNavigate();
   const routerParams = useParams();
@@ -21,7 +21,7 @@ const useQuestion = () => {
     //Checking if string has an integer
     if (questionNumber != null && /^-?\d+$/.test(questionNumber)) {
       const theIndex = parseInt(questionNumber) - 1;
-      SetAnswerIndex(theIndex);
+      SetCardIndex(theIndex);
     } else {
       navigate("/error/400", {
         state: { errorValue: "Invalid question number" },
@@ -38,11 +38,11 @@ const useQuestion = () => {
   }, [errorValue]);
 
   const goToNext = (answerValue: boolean) => {
-    const currentAnswer = answerList[answerIndex];
+    const currentAnswer = answerList[cardIndex];
     const isCurrentAnswered = currentAnswer.isCorrect;
 
     const theAnswers = [...answerList];
-    theAnswers[answerIndex] = {
+    theAnswers[cardIndex] = {
       category: currentAnswer.category,
       question: currentAnswer.question,
       correct_answer: currentAnswer.correct_answer,
@@ -53,8 +53,8 @@ const useQuestion = () => {
     SetAnswerList(theAnswers);
 
     if (isCurrentAnswered == null) {
-      if (answerIndex + 1 < answerList.length) {
-        navigate(`/question/${answerIndex + 2}`);
+      if (cardIndex + 1 < answerList.length) {
+        navigate(`/question/${cardIndex + 2}`);
       } else {
         navigate("/result");
       }
@@ -69,14 +69,14 @@ const useQuestion = () => {
     isLoading,
     errorValue,
     currentCategory:
-      answerList.length > 0 && answerIndex >= 0
-        ? answerList[answerIndex].category
+      answerList.length > 0 && cardIndex >= 0
+        ? answerList[cardIndex].category
         : "",
     currentQuestion:
-      answerList.length > 0 && answerIndex >= 0
-        ? htmlDecode(answerList[answerIndex].question)
+      answerList.length > 0 && cardIndex >= 0
+        ? htmlDecode(answerList[cardIndex].question)
         : "(Empty list)",
-    questionProgress: `${answerIndex + 1} of ${answerList.length}`,
+    questionProgress: `${cardIndex + 1} of ${answerList.length}`,
     goToNext,
   };
 };

@@ -6,11 +6,11 @@ const urlPath = `https://opentdb.com/api.php?amount=10&difficulty=hard&type=bool
 
 const useExternal = () => {
   const [answerList, SetAnswerList] = useStorage("answerList", []);
-  const [answerIndex, SetAnswerIndex] = useState(-1);
+  const [cardIndex, SetCardIndex] = useState(-1);
   const { dataValue, isLoading, errorValue } = useDataApi(
     urlPath,
     undefined,
-    answerIndex === 0
+    cardIndex === 0
   );
 
   useEffect(() => {
@@ -28,8 +28,8 @@ const useExternal = () => {
     errorValue,
     answerList,
     SetAnswerList,
-    answerIndex,
-    SetAnswerIndex,
+    cardIndex,
+    SetCardIndex,
   };
 };
 
