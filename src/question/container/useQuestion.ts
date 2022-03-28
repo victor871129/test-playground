@@ -61,7 +61,7 @@ const useQuestion = () => {
       }
     } else {
       navigate("/error/400", {
-        state: { errorValue: "Question already answered" },
+        state: { errorValue: "Please answer next question" },
       });
     }
   };

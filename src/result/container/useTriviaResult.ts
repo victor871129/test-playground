@@ -13,7 +13,7 @@ const useTriviaResult = () => {
       answerList.length
     ) {
       navigate("/error/400", {
-        state: { errorValue: "Questions not answered" },
+        state: { errorValue: "Please answer the questions" },
       });
     }
   }, []);
