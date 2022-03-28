@@ -1,4 +1,4 @@
-import { useTrivia } from "../../core/transport/triviaContext";
+import { useTrivia } from "../../core/persistence/triviaContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { htmlDecode } from "../../utils/mainBase";

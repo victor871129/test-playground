@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { htmlDecode } from "../../utils/mainBase";
-import { useTrivia } from "../../core/transport/triviaContext";
+import { useTrivia } from "../../core/persistence/triviaContext";
 
 const useQuestion = () => {
   const {

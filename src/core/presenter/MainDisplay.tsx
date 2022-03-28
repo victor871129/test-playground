@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeDisplay from "../../home/presenter/HomeDisplay";
 import QuestionDisplay from "../../question/presenter/QuestionDisplay";
 import ResultDisplay from "../../result/presenter/ResultDisplay";
-import { TriviaProvider } from "../transport/triviaContext";
+import { TriviaProvider } from "../persistence/triviaContext";
 import ErrorDisplay from "../../utils/presenter/ErrorDisplay";
 import ErrorRouteDisplay from "../../utils/presenter/ErrorRouteDisplay";
 
