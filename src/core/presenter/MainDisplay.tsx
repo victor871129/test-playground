@@ -5,8 +5,8 @@ import HomeDisplay from "../../home/presenter/HomeDisplay";
 import QuestionDisplay from "../../question/presenter/QuestionDisplay";
 import ResultDisplay from "../../result/presenter/ResultDisplay";
 import { TriviaProvider } from "../persistence/triviaContext";
-import ErrorDisplay from "../../utils/presenter/ErrorDisplay";
-import ErrorRouteDisplay from "../../utils/presenter/ErrorRouteDisplay";
+import ErrorDisplay from "../../error/presenter/ErrorDisplay";
+import ErrorRouteDisplay from "../../error/presenter/ErrorRouteDisplay";
 
 const MainDisplay = () => {
   return (
