@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AxiosError } from "axios";
 import React from "react";
-import { SingleAnswer, TriviaProps } from "../../utils/baseTypes";
+import { SingleAnswer } from "../../utils/baseTypes";
 import useExternal from "../interaction/useExternal";
 
 const TriviaContext = React.createContext({
@@ -17,7 +17,7 @@ const TriviaContext = React.createContext({
   },
 });
 
-export const TriviaProvider = ({ children }: TriviaProps) => {
+export const TriviaProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <TriviaContext.Provider value={useExternal()}>
       {children}
