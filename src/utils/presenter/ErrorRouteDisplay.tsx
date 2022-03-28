@@ -9,7 +9,11 @@ const ErrorRouteDisplay = () => {
     <>
       <ErrorDisplay
         errorStatus={routerParams.errorStatus}
-        errorValue={state.errorValue != null ? state.errorValue.toString() : ""}
+        errorValue={
+          state != null && state.errorValue != null
+            ? state.errorValue.toString()
+            : ""
+        }
       />
     </>
   );

@@ -18,10 +18,13 @@ const useQuestion = () => {
   useEffect(() => {
     const questionNumber = routerParams.questionNumber;
 
-    //Checking if string has an integer
-    if (questionNumber != null && /^-?\d+$/.test(questionNumber)) {
-      const theIndex = parseInt(questionNumber) - 1;
-      SetCardIndex(theIndex);
+    if (
+      questionNumber != null &&
+      /^-?\d+$/.test(questionNumber) && //Validate if string has an integer
+      parseInt(questionNumber) <= 10 &&
+      parseInt(questionNumber) > 0 // Validate number range
+    ) {
+      SetCardIndex(parseInt(questionNumber) - 1);
     } else {
       navigate("/error/400", {
         state: { errorValue: "Invalid question number" },
@@ -32,27 +35,25 @@ const useQuestion = () => {
   useEffect(() => {
     if (errorValue != null) {
       const statusValue = errorValue?.request?.status;
-      const errorStatus = parseInt(statusValue) > 0 ? statusValue : "500";
+      const errorStatus = statusValue != null ? statusValue.toString() : "500";
       navigate(`/error/${errorStatus}`, { state: { errorValue } });
     }
   }, [errorValue]);
 
   const goToNext = (answerValue: boolean) => {
     const currentAnswer = answerList[cardIndex];
-    const isCurrentAnswered = currentAnswer.isCorrect;
+    const notAnswered = currentAnswer.isCorrect == null;
 
     const theAnswers = [...answerList];
     theAnswers[cardIndex] = {
-      category: currentAnswer.category,
-      question: currentAnswer.question,
-      correct_answer: currentAnswer.correct_answer,
+      ...currentAnswer,
       isCorrect:
         currentAnswer.correct_answer === (answerValue ? "True" : "False"),
     };
 
     SetAnswerList(theAnswers);
 
-    if (isCurrentAnswered == null) {
+    if (notAnswered) {
       if (cardIndex + 1 < answerList.length) {
         navigate(`/question/${cardIndex + 2}`);
       } else {
@@ -65,17 +66,15 @@ const useQuestion = () => {
     }
   };
 
+  const hasAnswer = answerList.length > 0 && cardIndex >= 0;
+
   return {
     isLoading,
     errorValue,
-    currentCategory:
-      answerList.length > 0 && cardIndex >= 0
-        ? answerList[cardIndex].category
-        : "",
-    currentQuestion:
-      answerList.length > 0 && cardIndex >= 0
-        ? htmlDecode(answerList[cardIndex].question)
-        : "(Empty list)",
+    currentCategory: hasAnswer ? answerList[cardIndex].category : "",
+    currentQuestion: hasAnswer
+      ? htmlDecode(answerList[cardIndex].question)
+      : "",
     questionProgress: `${cardIndex + 1} of ${answerList.length}`,
     goToNext,
   };
