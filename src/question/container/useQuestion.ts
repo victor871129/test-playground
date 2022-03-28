@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { htmlDecode } from "../../utils/mainBase";
+import { htmlDecode } from "../../core/presenter/htmlDecode";
 import { useTrivia } from "../../core/persistence/triviaContext";
 
 const useQuestion = () => {

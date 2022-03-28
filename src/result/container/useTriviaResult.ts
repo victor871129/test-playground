@@ -1,7 +1,7 @@
 import { useTrivia } from "../../core/persistence/triviaContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { htmlDecode } from "../../utils/mainBase";
+import { htmlDecode } from "../../core/presenter/htmlDecode";
 
 const useTriviaResult = () => {
   const { answerList } = useTrivia();

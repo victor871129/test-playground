@@ -6,8 +6,3 @@ export interface SingleAnswer {
   correct_answer: string;
   isCorrect: boolean;
 }
-
-export interface ErrorProps {
-  errorStatus: string | undefined;
-  errorValue: AxiosError | string;
-}

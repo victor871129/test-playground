@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SingleAnswer } from "../../utils/baseTypes";
+import { SingleAnswer } from "./baseTypes";
 import useDataApi from "../transport/useDataApi";
 
 const urlPath = `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`;

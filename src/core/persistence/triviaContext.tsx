@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AxiosError } from "axios";
 import React from "react";
-import { SingleAnswer } from "../../utils/baseTypes";
+import { SingleAnswer } from "../interaction/baseTypes";
 import useExternal from "../interaction/useExternal";
 
 const TriviaContext = React.createContext({

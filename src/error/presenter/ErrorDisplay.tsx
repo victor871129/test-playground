@@ -1,6 +1,11 @@
 import React from "react";
+import { AxiosError } from "axios";
 import { Link } from "react-router-dom";
-import { ErrorProps } from "../../utils/baseTypes";
+
+interface ErrorProps {
+  errorStatus: string | undefined;
+  errorValue: AxiosError | string;
+}
 
 const ErrorDisplay = ({ errorStatus, errorValue }: ErrorProps) => (
   <>

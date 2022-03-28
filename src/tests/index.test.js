@@ -1,6 +1,6 @@
 /*global describe test expect*/
 
-import { htmlDecode } from "../utils/mainBase";
+import { htmlDecode } from "../core/presenter/htmlDecode";
 
 describe("G2i Tests", () => {
   test("it can pass", () => {
