@@ -4,7 +4,7 @@ import MainDisplay from "./core/presenter/MainDisplay";
 
 //TODO
 //Tests
-// Comments
+// Code Comments
 // `any` typescript
 
 ReactDOM.render(<MainDisplay />, document.getElementById("root"));
