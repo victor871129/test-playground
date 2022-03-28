@@ -8,7 +8,7 @@ const TriviaContext = React.createContext({
   isLoading: true,
   errorValue: undefined as AxiosError | undefined,
   answerList: [] as SingleAnswer[],
-  SetAnswerList: (answerList: SingleAnswer[]) => {
+  SetAnswerList: (answerList: any) => {
     return;
   },
   cardIndex: -1,
