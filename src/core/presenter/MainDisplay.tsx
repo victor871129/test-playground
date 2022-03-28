@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/styles.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import InitialPage from "../../home/presenter/HomeDisplay";
+import HomeDisplay from "../../home/presenter/HomeDisplay";
 import QuestionDisplay from "../../question/presenter/QuestionDisplay";
 import ResultDisplay from "../../result/presenter/ResultDisplay";
 import { TriviaProvider } from "../transport/triviaContext";
@@ -14,7 +14,7 @@ const MainDisplay = () => {
       <TriviaProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<InitialPage />} />
+            <Route path="/" element={<HomeDisplay />} />
             <Route
               path="question/:questionNumber"
               element={<QuestionDisplay />}

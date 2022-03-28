@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 
-// https://www.robinwieruch.de/react-hooks-fetch-data/
 const useDataApi = (
   initialUrl: string,
   initialData: { results: [] } | undefined,

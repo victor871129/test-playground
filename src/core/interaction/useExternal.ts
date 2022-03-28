@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import useDataApi from "../transport/useDataApi";
-import useStorage from "../persistence/useStorage";
 
 const urlPath = `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`;
 
 const useExternal = () => {
-  const [answerList, SetAnswerList] = useStorage("answerList", []);
+  const [answerList, SetAnswerList] = useState([]);
   const [cardIndex, SetCardIndex] = useState(-1);
   const { dataValue, isLoading, errorValue } = useDataApi(
     urlPath,
