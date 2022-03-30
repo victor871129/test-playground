@@ -18,14 +18,24 @@ describe("G2i Tests", () => {
     expect(textElement).toBeInTheDocument();
   });
 
-  test("Render from home to question page", async () => {
+  test("Render from home to questions to result page", async () => {
     render(<App />);
     fireEvent.click(screen.getByText("Begin"));
-    const textElement = await screen.findByText("True");
-    const falseElement = await screen.findByText("False");
-    screen.debug();
-    expect(textElement).toBeInTheDocument();
-    expect(falseElement).toBeInTheDocument();
+    for (let i = 0; i < 10 - 1; i++) {
+      const textElement = await screen.findByText("False");
+
+      expect(textElement).toBeInTheDocument();
+
+      fireEvent.click(screen.getByText("True"));
+    }
+    const finalQuestionElement = await screen.findByText("10 of 10");
+
+    expect(finalQuestionElement).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("False"));
+    const resultElement = await screen.findByText("Play again?");
+
+    expect(resultElement).toBeInTheDocument();
   });
 
   test("Render question page", async () => {
