@@ -1,12 +1,7 @@
 import React, { ErrorInfo } from "react";
 import "../styles/styles.css";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import HomeDisplay from "../../home/presenter/HomeDisplay";
-import QuestionDisplay from "../../question/presenter/QuestionDisplay";
-import ResultDisplay from "../../result/presenter/ResultDisplay";
-import { TriviaProvider } from "../persistence/triviaContext";
-import ErrorDisplay from "../../error/presenter/ErrorDisplay";
-import ErrorRouteDisplay from "../../error/presenter/ErrorRouteDisplay";
+import { BrowserRouter, Link } from "react-router-dom";
+import RouteDisplay from "./RouteDisplay";
 
 interface MainState {
   error: Error | undefined;
@@ -37,33 +32,9 @@ class MainDisplay extends React.Component<unknown, MainState> {
     }
 
     return (
-      <React.StrictMode>
-        <TriviaProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<HomeDisplay />} />
-              <Route
-                path="question/:questionNumber"
-                element={<QuestionDisplay />}
-              />
-              <Route path="/result" element={<ResultDisplay />} />
-              <Route
-                path="error/:errorStatus"
-                element={<ErrorRouteDisplay />}
-              />
-              <Route
-                path="*"
-                element={
-                  <ErrorDisplay
-                    errorStatus={"404"}
-                    errorValue={"React route not found"}
-                  />
-                }
-              />
-            </Routes>
-          </BrowserRouter>
-        </TriviaProvider>
-      </React.StrictMode>
+      <BrowserRouter>
+        <RouteDisplay />
+      </BrowserRouter>
     );
   }
 }

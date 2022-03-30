@@ -1,8 +1,42 @@
 /*global describe test expect*/
 
+import React from "react";
 import { htmlDecode } from "../core/presenter/htmlDecode";
+import { render, screen, waitFor } from "@testing-library/react";
+//import { createMemoryHistory } from "history";
+import { MemoryRouter } from "react-router-dom";
+import MainDisplay from "../core/presenter/MainDisplay";
+import QuestionDisplay from "../question/presenter/QuestionDisplay"
 
 describe("G2i Tests", () => {
+  test("Check htmlDecode with string", () => {
+    expect(htmlDecode("&lt;&gt;")).toBe("<>");
+  });
+
+  test("Render home page", () => {
+    render(<MainDisplay />);
+    const linkElement = screen.getByText("Can you score 100%?");
+    expect(linkElement).toBeInTheDocument();
+  });
+
+  test("Render question page", async () => {
+    //const history = createMemoryHistory({ initialEntries: ["/question/1"] });
+    render(
+      <MemoryRouter initialEntries={["/question/1"]}>
+        <QuestionDisplay />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('True')).toBeInTheDocument()
+    })
+
+    //const movie = await screen.findByText('True')
+    //screen.debug();
+    //const linkElement = screen.getByText("Can you score 100%?");
+    //expect(movie).toBe(1);
+  });
+
   test("it can pass", () => {
     expect(true).toBe(true);
   });
@@ -17,9 +51,5 @@ describe("G2i Tests", () => {
 
   test("My Name is John", () => {
     expect("John").toBe("John");
-  });
-
-  test("Check htmlDecode with string", () => {
-    expect(htmlDecode("&lt;&gt;")).toBe("<>");
   });
 });
