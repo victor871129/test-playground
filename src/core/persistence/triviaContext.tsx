@@ -6,6 +6,9 @@ import useExternal from "../interaction/useExternal";
 
 const TriviaContext = React.createContext({
   isLoading: true,
+  SetIsUrlEnabled: (_: boolean) => {
+    return;
+  },
   errorValue: undefined as AxiosError | undefined,
   answerList: [] as SingleAnswer[],
   SetAnswerList: (_: SingleAnswer[]) => {

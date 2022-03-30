@@ -3,7 +3,6 @@
 import React from "react";
 import { htmlDecode } from "../core/presenter/htmlDecode";
 import { render, screen } from "@testing-library/react";
-//import { createMemoryHistory } from "history";
 import { MemoryRouter } from "react-router-dom";
 import App from "../core/presenter/App";
 import RouteDisplay from "../core/presenter/RouteDisplay";
@@ -20,7 +19,6 @@ describe("G2i Tests", () => {
   });
 
   test("Render question page", async () => {
-    //const history = createMemoryHistory({ initialEntries: ["/question/1"] });
     render(
       <MemoryRouter initialEntries={["/question/1"]}>
         <RouteDisplay />
@@ -32,7 +30,6 @@ describe("G2i Tests", () => {
   });
 
   test("Render no loaded question page", async () => {
-    //const history = createMemoryHistory({ initialEntries: ["/question/1"] });
     render(
       <MemoryRouter initialEntries={["/question/2"]}>
         <RouteDisplay />
