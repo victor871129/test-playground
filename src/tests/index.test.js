@@ -2,7 +2,7 @@
 
 import React from "react";
 import { htmlDecode } from "../core/presenter/htmlDecode";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 //import { createMemoryHistory } from "history";
 import { MemoryRouter } from "react-router-dom";
 import App from "../core/presenter/App";
@@ -15,8 +15,8 @@ describe("G2i Tests", () => {
 
   test("Render home page", () => {
     render(<App />);
-    const linkElement = screen.getByText("Can you score 100%?");
-    expect(linkElement).toBeInTheDocument();
+    const textElement = screen.getByText("Can you score 100%?");
+    expect(textElement).toBeInTheDocument();
   });
 
   test("Render question page", async () => {
@@ -27,15 +27,21 @@ describe("G2i Tests", () => {
       </MemoryRouter>
     );
 
-    await waitFor(() => {
-      screen.debug();
-      expect(screen.getByText("True")).toBeInTheDocument();
-    });
+    const textElement = await screen.findByText("True");
+    expect(textElement).toBeInTheDocument();
+  });
 
-    //const movie = await screen.findByText('True')
-    //
-    //const linkElement = screen.getByText("Can you score 100%?");
-    //expect(movie).toBe(1);
+  test("Render no loaded question page", async () => {
+    //const history = createMemoryHistory({ initialEntries: ["/question/1"] });
+    render(
+      <MemoryRouter initialEntries={["/question/2"]}>
+        <RouteDisplay />
+      </MemoryRouter>
+    );
+
+    const textElement = await screen.findByText("True");
+    screen.debug();
+    expect(textElement).toBeInTheDocument();
   });
 
   test("it can pass", () => {
