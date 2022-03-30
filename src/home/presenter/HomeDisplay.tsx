@@ -2,7 +2,11 @@ import React from "react";
 import useHome from "../container/useHome";
 
 const HomeDisplay = () => {
-  const { goNext } = useHome();
+  const { isLoading, goNext } = useHome();
+
+  if (isLoading) {
+    return <>Loading...</>;
+  }
 
   return (
     <>

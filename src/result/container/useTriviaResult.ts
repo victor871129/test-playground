@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { htmlDecode } from "../../core/presenter/htmlDecode";
 
 const useTriviaResult = () => {
-  const { answerList } = useTrivia();
+  const { answerList, SetAnswerList, SetIsUrlEnabled } = useTrivia();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +28,11 @@ const useTriviaResult = () => {
         actualItem.question
       )} The answer is ${actualItem.correct_answer}.`,
     })),
-    goHome: () => navigate(`/`),
+    goHome: () => {
+      SetIsUrlEnabled(false);
+      SetAnswerList([]);
+      navigate(`/`);
+    },
   };
 };
 

@@ -1,11 +1,11 @@
 /*global describe test expect*/
 
 import React from "react";
-import { htmlDecode } from "../core/presenter/htmlDecode";
+import { htmlDecode } from "./core/presenter/htmlDecode";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import App from "../core/presenter/App";
-import RouteDisplay from "../core/presenter/RouteDisplay";
+import App from "./core/presenter/App";
+import RouteDisplay from "./core/presenter/RouteDisplay";
 
 describe("G2i Tests", () => {
   test("Check htmlDecode with string", () => {

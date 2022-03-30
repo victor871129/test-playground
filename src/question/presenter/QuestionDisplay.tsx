@@ -2,17 +2,8 @@ import React from "react";
 import useQuestion from "../container/useQuestion";
 
 const QuestionDisplay = () => {
-  const {
-    isLoading,
-    currentCategory,
-    currentQuestion,
-    questionProgress,
-    goToNext,
-  } = useQuestion();
-
-  if (isLoading) {
-    return <>Loading...</>;
-  }
+  const { currentCategory, currentQuestion, questionProgress, goToNext } =
+    useQuestion();
 
   return (
     <>

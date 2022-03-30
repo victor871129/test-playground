@@ -17,8 +17,9 @@ const useQuestion = () => {
 
   useEffect(() => {
     const questionNumber = routerParams.questionNumber;
-
     if (
+      answerList != null &&
+      answerList.length > 0 &&
       questionNumber != null &&
       /^-?\d+$/.test(questionNumber) && //Validate if string has an integer
       parseInt(questionNumber) <= 10 &&
@@ -27,10 +28,10 @@ const useQuestion = () => {
       SetCardIndex(parseInt(questionNumber) - 1);
     } else {
       navigate("/error/400", {
-        state: { errorValue: "Invalid question number" },
+        state: { errorValue: "Invalid page call" },
       });
     }
-  }, [routerParams.questionNumber]);
+  }, [answerList, routerParams.questionNumber]);
 
   useEffect(() => {
     if (errorValue != null) {
