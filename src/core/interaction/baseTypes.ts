@@ -1,5 +1,3 @@
-import { AxiosError } from "axios";
-
 export interface SingleAnswer {
   category: string;
   question: string;

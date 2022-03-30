@@ -9,8 +9,10 @@ const useTriviaResult = () => {
 
   useEffect(() => {
     if (
+      answerList == null ||
+      answerList.length === 0 ||
       answerList.filter((actualItem) => actualItem.isCorrect != null).length !==
-      answerList.length
+        answerList.length
     ) {
       navigate("/error/400", {
         state: { errorValue: "Please answer the questions" },

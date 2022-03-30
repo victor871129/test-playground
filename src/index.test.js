@@ -2,7 +2,7 @@
 
 import React from "react";
 import { htmlDecode } from "./core/presenter/htmlDecode";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "./core/presenter/App";
 import RouteDisplay from "./core/presenter/RouteDisplay";
@@ -18,6 +18,16 @@ describe("G2i Tests", () => {
     expect(textElement).toBeInTheDocument();
   });
 
+  test("Render from home to question page", async () => {
+    render(<App />);
+    fireEvent.click(screen.getByText("Begin"));
+    const textElement = await screen.findByText("True");
+    const falseElement = await screen.findByText("False");
+    screen.debug();
+    expect(textElement).toBeInTheDocument();
+    expect(falseElement).toBeInTheDocument();
+  });
+
   test("Render question page", async () => {
     render(
       <MemoryRouter initialEntries={["/question/1"]}>
@@ -25,19 +35,20 @@ describe("G2i Tests", () => {
       </MemoryRouter>
     );
 
-    const textElement = await screen.findByText("True");
+    const textElement = await screen.findByText('"Invalid page call"');
     expect(textElement).toBeInTheDocument();
   });
 
-  test("Render no loaded question page", async () => {
+  test("Render result page", async () => {
     render(
-      <MemoryRouter initialEntries={["/question/2"]}>
+      <MemoryRouter initialEntries={["/result"]}>
         <RouteDisplay />
       </MemoryRouter>
     );
 
-    const textElement = await screen.findByText("True");
-    screen.debug();
+    const textElement = await screen.findByText(
+      '"Please answer the questions"'
+    );
     expect(textElement).toBeInTheDocument();
   });
 
