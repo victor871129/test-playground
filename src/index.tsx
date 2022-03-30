@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MainDisplay from "./core/presenter/MainDisplay";
+import MainDisplay from "./core/presenter/App";
 
 //TODO
 //Tests

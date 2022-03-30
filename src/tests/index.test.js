@@ -5,8 +5,8 @@ import { htmlDecode } from "../core/presenter/htmlDecode";
 import { render, screen, waitFor } from "@testing-library/react";
 //import { createMemoryHistory } from "history";
 import { MemoryRouter } from "react-router-dom";
-import MainDisplay from "../core/presenter/MainDisplay";
-import QuestionDisplay from "../question/presenter/QuestionDisplay"
+import App from "../core/presenter/App";
+import RouteDisplay from "../core/presenter/RouteDisplay";
 
 describe("G2i Tests", () => {
   test("Check htmlDecode with string", () => {
@@ -14,7 +14,7 @@ describe("G2i Tests", () => {
   });
 
   test("Render home page", () => {
-    render(<MainDisplay />);
+    render(<App />);
     const linkElement = screen.getByText("Can you score 100%?");
     expect(linkElement).toBeInTheDocument();
   });
@@ -23,16 +23,17 @@ describe("G2i Tests", () => {
     //const history = createMemoryHistory({ initialEntries: ["/question/1"] });
     render(
       <MemoryRouter initialEntries={["/question/1"]}>
-        <QuestionDisplay />
+        <RouteDisplay />
       </MemoryRouter>
     );
 
     await waitFor(() => {
-      expect(screen.getByText('True')).toBeInTheDocument()
-    })
+      screen.debug();
+      expect(screen.getByText("True")).toBeInTheDocument();
+    });
 
     //const movie = await screen.findByText('True')
-    //screen.debug();
+    //
     //const linkElement = screen.getByText("Can you score 100%?");
     //expect(movie).toBe(1);
   });

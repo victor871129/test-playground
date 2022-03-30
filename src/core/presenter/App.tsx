@@ -8,7 +8,7 @@ interface MainState {
   errorInfo: ErrorInfo | undefined;
 }
 
-class MainDisplay extends React.Component<unknown, MainState> {
+class App extends React.Component<unknown, MainState> {
   constructor(props: unknown) {
     super(props);
     this.state = { error: undefined, errorInfo: undefined };
@@ -39,4 +39,4 @@ class MainDisplay extends React.Component<unknown, MainState> {
   }
 }
 
-export default MainDisplay;
+export default App;
